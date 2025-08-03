@@ -1,0 +1,9 @@
+id_produto,nome,categoria,preco_unitario,id_linha
+1,Rolamento AX-12,Automotivo,155.15,1
+2,Rolamento GY-7,Automotivo,216.7,1
+3,Rolamento TR-45,Industrial,349.99,4
+4,Rolamento FD-9,Industrial,422.25,4
+5,Rolamento HT-22,Automotivo,199.99,2
+6,Rolamento ZR-88,Industrial,387.0,5
+7,Rolamento LP-33,Automotivo,179.0,3
+8,Rolamento QX-15,Industrial,413.0,5

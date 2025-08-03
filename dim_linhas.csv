@@ -1,0 +1,6 @@
+id_linha,nome_linha,turno,capacidade_hora
+1,Linha A,Manhã,1200
+2,Linha A,Tarde,1200
+3,Linha A,Noite,1000
+4,Linha B,Manhã,1800
+5,Linha C,Tarde,1500
