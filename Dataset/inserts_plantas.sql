@@ -1,0 +1,10 @@
+INSERT INTO plantas (id_planta, nome, pais, estado, cidade) VALUES (1, 'NSK Brasil Ltda', 'Brazil', 'São Paulo', 'Suzano');
+INSERT INTO plantas (id_planta, nome, pais, estado, cidade) VALUES (2, 'NSK Argentina SRL', 'Argentina', 'Buenos Aires', 'Buenos Aires');
+INSERT INTO plantas (id_planta, nome, pais, estado, cidade) VALUES (3, 'NSK México', 'Mexico', 'Guanajuato', 'Silao');
+INSERT INTO plantas (id_planta, nome, pais, estado, cidade) VALUES (4, 'NSK USA - Ann Arbor', 'USA', 'Michigan', 'Ann Arbor');
+INSERT INTO plantas (id_planta, nome, pais, estado, cidade) VALUES (5, 'NSK Canada', 'Canada', 'Ontario', 'Brampton');
+INSERT INTO plantas (id_planta, nome, pais, estado, cidade) VALUES (6, 'NSK Japan HQ', 'Japan', 'Tokyo', 'Shinagawa-ku');
+INSERT INTO plantas (id_planta, nome, pais, estado, cidade) VALUES (7, 'NSK Germany', 'Germany', 'Ratingen', 'Ratingen');
+INSERT INTO plantas (id_planta, nome, pais, estado, cidade) VALUES (8, 'NSK China - Kunshan', 'China', 'Jiangsu', 'Kunshan');
+INSERT INTO plantas (id_planta, nome, pais, estado, cidade) VALUES (9, 'NSK India', 'India', 'Tamil Nadu', 'Chennai');
+INSERT INTO plantas (id_planta, nome, pais, estado, cidade) VALUES (10, 'NSK Thailand', 'Thailand', 'Chonburi', 'Amata City');
