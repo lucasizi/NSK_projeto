@@ -1,0 +1,40 @@
+# NSK Analytical Dashboard - Portfolio Project
+
+## Overview
+This project simulates an end-to-end data solution for NSK, a Japanese multinational leader in bearing manufacturing. Designed to demonstrate ETL, data modeling, and visualization skills, the dashboard delivers strategic insights into global operations.
+
+## Project Architecture
+
+### 🧩 Synthetic Data Generation
+- Python scripts for realistic datasets:
+  - 100 globally distributed customers
+  - 50 categorized products (Automotive/Industrial)
+  - 10 production plants in 10 countries
+  - 1,000 sales records
+  - 180 quality control entries
+
+### 🗃️ Database Modeling
+- Optimized star schema:
+  ```mermaid
+  erDiagram
+      SALES ||--o{ PRODUCTS : "contains"
+      PRODUCTS }o--|| PLANTS : "produced_at"
+      SALES ||--o{ CUSTOMERS : "performed_by"
+      QUALITY }o--|| PLANTS : "monitored_at"
+
+## Technologies Used
+- Python (Pandas, NumPy, OS, graphviz)
+- graphviz (for visualizing data flows)
+- SQL (T-SQL for SQL Server)
+- Power BI (DAX for calculations)
+- Mermaid (ER diagrams)
+- SQL Server (for database management)
+- Power BI (for data visualization)
+- Git (version control)
+
+## How to Run
+Generate datasets: python.py
+
+Execute SQL scripts: setup_database.sql
+
+Import to Power BI: NSK_Dashboard.pbix
