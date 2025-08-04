@@ -33,8 +33,26 @@ This project simulates an end-to-end data solution for NSK, a Japanese multinati
 - Git (version control)
 
 ## How to Run
-Generate datasets: python.py
+In the root directory, you will find the following folders and files:
 
-Execute SQL scripts: setup_database.sql
+  - **dataset**: Contains scripts to generate synthetic data and insert it into the database.
+  - **DDL**: Contains SQL scripts for database setup and data insertion.
+  - **powerbi**: Contains the Power BI dashboard file.
+In DDL:
+For the database setup, we have the following files:
+A PNG with the ER diagram of the database, which shows the relationships between the tables.
+we have the file "ms_sql_ddl_er.sql" which contains the DDL for the database, including the creation of tables and relationships.
+Also i've created a mwb file for MySQL Workbench, which can be used to visualize the database schema and relationships.
+
+In dataset:
+  Generate datasets: dataset.py
+  after this, you can run the following scripts to insert data into the database:
+    insert_qualidade.ipynb
+    insert_vendas.ipynb
+    insert_produtos.ipynb
+    insert_clientes.ipynb
+    insert_plantas.ipynb
+  All of these scripts will insert data directly into the database. But they have the option to create a .sql file with the insert statements.
+
 
 Import to Power BI: NSK_Dashboard.pbix
