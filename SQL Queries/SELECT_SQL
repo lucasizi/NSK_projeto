@@ -1,0 +1,114 @@
+-- In addition to the Power BI dashboard
+-- I would like to explore some SQL queries that answer management-related questions.
+
+use prod_nsk;
+
+-- 1. Highest Average Quality Index per Plant
+SELECT 
+    P.nome AS Plant_Name,
+    AVG(Q.indice_qualidade) AS Avg_Quality_Index
+FROM QUALIDADE Q
+JOIN PLANTAS P ON Q.id_planta = P.id_planta
+GROUP BY P.nome
+ORDER BY Avg_Quality_Index DESC
+LIMIT 1;
+
+-- 2. Total Revenue per Product Category
+SELECT 
+    PR.categoria,
+    SUM(V.quantidade * PR.preco_unitario) AS Total_Revenue
+FROM VENDAS V
+JOIN PRODUTOS PR ON V.id_produto = PR.id_produto
+GROUP BY PR.categoria
+ORDER BY Total_Revenue DESC;
+
+-- 3. Top 10 Revenue-Generating Customers in Q1 2024
+SELECT
+    C.NOME AS CLIENTE,
+    SUM(V.QUANTIDADE * P.PRECO_UNITARIO) AS REVENUE_GENERATING
+FROM CLIENTES C
+    JOIN VENDAS V
+    ON C.ID_CLIENTE = V.ID_CLIENTE
+    JOIN PRODUTOS P
+    ON P.ID_PRODUTO = V.ID_PRODUTO
+WHERE V.DATA_VENDA BETWEEN '2024-01-01' AND '2024-03-31'
+GROUP BY C.NOME
+ORDER BY 2 DESC
+LIMIT 10;
+
+
+
+-- 4. Average Sales Ticket by Country
+SELECT
+    C.PAIS COUNTRY,
+    AVG(V.QUANTIDADE * P.PRECO_UNITARIO) AVG_TICKET
+FROM
+    CLIENTES C
+    JOIN VENDAS V
+    ON V.ID_CLIENTE = C.ID_CLIENTE
+    JOIN PRODUTOS P
+    ON P.ID_PRODUTO = V.ID_PRODUTO
+    GROUP BY C.PAIS
+    ORDER BY 2 DESC;
+
+
+
+
+-- 5. Defect Rate Over Time per Plant
+SELECT
+    P.NOME AS PLANT_NAME,
+    Q.DATA,
+    ROUND(SUM(Q.unidades_defeituosas) / SUM(Q.unidades_produzidas), 4) AS Defect_Rate
+FROM PLANTAS P
+    JOIN QUALIDADE Q ON Q.ID_PLANTA = P.ID_PLANTA
+    GROUP BY PLANT_NAME, Q.DATA
+    ORDER BY 1,2;
+
+-- 6. Revenue vs Quality per Plant
+SELECT 
+    PL.nome AS Plant_Name,
+    R.Revenue,
+    Q.Avg_Quality
+FROM (
+    SELECT 
+        PR.id_planta,
+        SUM(V.quantidade * PR.preco_unitario) AS Revenue
+    FROM VENDAS V
+    JOIN PRODUTOS PR ON V.id_produto = PR.id_produto
+    GROUP BY PR.id_planta
+) AS R
+JOIN (
+    SELECT 
+        id_planta,
+        AVG(indice_qualidade) AS Avg_Quality
+    FROM QUALIDADE
+    GROUP BY id_planta
+) AS Q ON R.id_planta = Q.id_planta
+JOIN PLANTAS PL ON R.id_planta = PL.id_planta
+ORDER BY R.Revenue DESC;
+
+-- 7. Monthly Revenue Trend per Product Category
+SELECT 
+    DATE_FORMAT(V.data_venda, '%Y-%m') AS Month,
+    PR.categoria,
+    SUM(V.quantidade * PR.preco_unitario) AS Monthly_Revenue
+FROM VENDAS V
+JOIN PRODUTOS PR ON V.id_produto = PR.id_produto
+GROUP BY DATE_FORMAT(V.data_venda, '%Y-%m'), PR.categoria
+ORDER BY Month, PR.categoria;
+
+-- 8. Best Price-to-Defect Ratio Products
+SELECT 
+    P.nome AS Product_Name,
+    P.preco_unitario,
+    Q.Avg_Quality,
+    ROUND(P.preco_unitario / NULLIF((100 - Q.Avg_Quality), 0), 2) AS Price_Quality_Ratio
+FROM PRODUTOS P
+JOIN (
+    SELECT id_planta, AVG(indice_qualidade) AS Avg_Quality
+    FROM QUALIDADE
+    GROUP BY id_planta
+) AS Q ON P.id_planta = Q.id_planta
+WHERE (100 - Q.Avg_Quality) > 0
+ORDER BY Price_Quality_Ratio ASC
+LIMIT 10;

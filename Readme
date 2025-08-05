@@ -56,3 +56,6 @@ In dataset:
 
 
 Import to Power BI: NSK_Dashboard.pbix
+
+## In addition to the Power BI dashboard, i have explore some SQL queries that answer management-related questions.
+## These queries are located in the "SQL Queries" folder and can be used to extract insights from the database.
